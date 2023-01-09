@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 
 import User from "../models/User";
 import { createError } from "../utils/error";
+import config from "../config/config";
 
 export const register = async (
   req: Request,
@@ -45,7 +46,7 @@ export const login = async (
 
     const token = jwt.sign(
       { id: user._id.toString(), isAdmin: user.isAdmin },
-      "6jBVnYAT2SDk05DiYA9YTEFsSHDQBcMt"
+      config.JWT
     );
 
     // TODO - exclude password and isAdmin (don't send it to the FE)

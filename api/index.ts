@@ -1,21 +1,19 @@
 import express, { Express } from "express";
 import mongoose from "mongoose";
-import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 
 import authRoute from "./routes/auth";
 import usersRoute from "./routes/users";
 import todosRoute from "./routes/todos";
+import config from "./config/config";
 
 const app: Express = express();
-const port: string = process.env.PORT || "8800";
-
-dotenv.config();
+const port: string = config.PORT || "8800";
 
 const connect = async (): Promise<void> => {
   try {
     mongoose.set("strictQuery", false);
-    await mongoose.connect(process.env.MONGO || "", {
+    await mongoose.connect(config.MONGO, {
       autoIndex: true,
       autoCreate: true,
     });
