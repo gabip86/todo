@@ -1,20 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import User from "../models/User";
 
-export const createUser = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  const newUser = new User(req.body);
-  try {
-    const savedUser = await newUser.save();
-    res.status(200).json(savedUser);
-  } catch (error) {
-    return next(error);
-  }
-};
-
 export const updateUser = async (
   req: Request,
   res: Response,
